@@ -1,0 +1,10 @@
+# Test Profile Configuration for Examples
+# This profile uses mock implementations for testing
+
+embabel.examples.interactive-mode=false
+
+# Use test implementations
+spring.profiles.include=test
+
+# Logging for tests
+logging.level.com.embabel.examples=DEBUG

@@ -1,0 +1,30 @@
+# Embabel Examples Application Configuration
+
+# Application Info
+spring.application.name=embabel-examples
+management.endpoint.health.show-details=always
+
+# Logging Configuration
+logging.level.com.embabel=INFO
+logging.level.org.springframework.ai=DEBUG
+logging.level.root=WARN
+
+# Example-specific Configuration
+embabel.examples.sample-data-path=classpath:sample-data/
+embabel.examples.interactive-mode=true
+
+# RAG Configuration
+embabel.rag.chunk-size=1000
+embabel.rag.chunk-overlap=200
+embabel.rag.similarity-threshold=0.5
+embabel.rag.max-results=10
+
+# Vector Store Configuration (when using Neo4j profile)
+spring.neo4j.uri=bolt://localhost:7687
+spring.neo4j.authentication.username=neo4j
+spring.neo4j.authentication.password=password
+
+# AI Model Configuration (placeholder - configure based on your setup)
+spring.ai.openai.api-key=${OPENAI_API_KEY:demo-key}
+spring.ai.openai.embedding.model=text-embedding-ada-002
+spring.ai.openai.chat.model=gpt-3.5-turbo

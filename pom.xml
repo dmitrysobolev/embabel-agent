@@ -27,6 +27,7 @@
         <module>embabel-agent-eval</module>
         <module>embabel-agent-dependencies</module>
         <module>embabel-agent-test</module>
+        <module>embabel-agent-examples</module>
     </modules>
 
 
