@@ -18,6 +18,7 @@ package com.embabel.agent.core
 import com.embabel.agent.common.Constants
 import com.embabel.agent.spi.PlatformServices
 import com.embabel.agent.spi.ToolGroupResolver
+import java.util.concurrent.CompletableFuture
 
 /**
  * An AgentPlatform can run agents. It can also act as an agent itself,
@@ -72,6 +73,7 @@ interface AgentPlatform : AgentScope {
      * @param bindings the bindings for the process: Objects that are pre-bound
      * to the blackboard.
      */
+    @Deprecated("Use createAgentProcess and run or start instead")
     fun runAgentFrom(
         agent: Agent,
         processOptions: ProcessOptions = ProcessOptions(),
@@ -85,6 +87,7 @@ interface AgentPlatform : AgentScope {
      * @param processOptions the options for the process
      * @param input the input to bind to the blackboard
      */
+    @Deprecated("Use createAgentProcess and run or start instead")
     fun runAgentWithInput(
         agent: Agent,
         processOptions: ProcessOptions = ProcessOptions(),
@@ -110,6 +113,17 @@ interface AgentPlatform : AgentScope {
         processOptions: ProcessOptions,
         bindings: Map<String, Any>,
     ): AgentProcess
+
+    /**
+     * Run the given agent process in the background
+     */
+    fun start(
+        agentProcess: AgentProcess,
+    ): CompletableFuture<AgentProcess> {
+        return platformServices.asyncer.async {
+            agentProcess.run()
+        }
+    }
 
     fun createChildProcess(
         agent: Agent,
